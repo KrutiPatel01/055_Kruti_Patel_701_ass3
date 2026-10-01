@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Registration Successful</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Registration Successful ✅</h1>
+
+    <table class="result-table">
+      <tr>
+        <th>Field</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td>Username</td>
+        <td><%= user.username %></td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td><%= user.email %></td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td><%= user.gender %></td>
+      </tr>
+      <tr>
+        <td>Hobbies</td>
+        <td><%= user.hobbies.join(', ') %></td>
+      </tr>
+      <tr>
+        <td>Profile Picture</td>
+        <td>
+          <img src="<%= user.profilePic %>" class="profile-pic" alt="Profile picture" />
+          <br />
+          <a class="download-link" href="/download/image/<%= user.profilePic.split('/').pop() %>">&#11015; Download</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Other Pictures</td>
+        <td>
+          <% if (user.otherPics.length === 0) { %>
+            <em>None uploaded</em>
+          <% } else { %>
+            <div class="gallery">
+              <% user.otherPics.forEach(function(pic) { %>
+                <div class="gallery-item">
+                  <img src="<%= pic %>" class="gallery-pic" alt="Uploaded picture" />
+                  <br />
+                  <a class="download-link" href="/download/image/<%= pic.split('/').pop() %>">&#11015; Download</a>
+                </div>
+              <% }) %>
+            </div>
+          <% } %>
+        </td>
+      </tr>
+    </table>
+
+    <a href="/download/data/<%= user.dataFile %>" class="download-btn">&#11015; Download registration data (CSV)</a>
+
+    <a href="/" class="back-link">&larr; Register another user</a>
+  </div>
+</body>
+</html>

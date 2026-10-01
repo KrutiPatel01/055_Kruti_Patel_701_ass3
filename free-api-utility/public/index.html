@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weather Utility - Free API</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Weather Utility</h1>
+    <p class="muted">Free API: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> (no API key). Type a city and fetch the weather in two ways.</p>
+
+    <div class="form-group">
+      <label for="city">City</label>
+      <input type="text" id="city" value="Surat" placeholder="e.g. Mumbai" />
+    </div>
+
+    <div class="buttons">
+      <button id="btnFront">Fetch from Frontend (browser &rarr; API)</button>
+      <button id="btnBack" class="alt">Fetch from Backend (browser &rarr; Express &rarr; API)</button>
+    </div>
+
+    <div id="status" class="status"></div>
+    <div id="result"></div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<%- include('../partials/header', { title: 'Employee ' + emp.empid }) %>
+
+<h1><%= emp.name %> <span class="muted">(<%= emp.empid %>)</span></h1>
+
+<table class="result-table">
+  <tr><th>Email</th><td><%= emp.email %></td></tr>
+  <tr><th>Phone</th><td><%= emp.phone || '-' %></td></tr>
+  <tr><th>Department</th><td><%= emp.department %></td></tr>
+  <tr><th>Designation</th><td><%= emp.designation %></td></tr>
+  <tr><th>Joined</th><td><%= emp.joinDate.toDateString() %></td></tr>
+</table>
+
+<h3>Salary slip (monthly)</h3>
+<table class="result-table">
+  <tr><th>Basic</th><td class="num"><%= salary.basic.toFixed(2) %></td></tr>
+  <tr><th>HRA (<%= emp.hraPercent %>%)</th><td class="num">+ <%= salary.hra.toFixed(2) %></td></tr>
+  <tr><th>DA (<%= emp.daPercent %>%)</th><td class="num">+ <%= salary.da.toFixed(2) %></td></tr>
+  <tr class="total-row"><th>Gross salary</th><td class="num"><%= salary.gross.toFixed(2) %></td></tr>
+  <tr><th>PF (<%= emp.pfPercent %>%)</th><td class="num">- <%= salary.pf.toFixed(2) %></td></tr>
+  <tr><th>Professional tax</th><td class="num">- <%= salary.tax.toFixed(2) %></td></tr>
+  <tr class="total-row"><th>Total deductions</th><td class="num"><%= salary.deductions.toFixed(2) %></td></tr>
+  <tr class="total-row"><th>Net salary</th><td class="num"><%= salary.net.toFixed(2) %></td></tr>
+</table>
+
+<div class="actions" style="margin-top:16px">
+  <a class="btn grey" href="/employees">&larr; Back</a>
+  <a class="btn" href="/employees/<%= emp._id %>/edit">Edit</a>
+  <form action="/employees/<%= emp._id %>/reset-password" method="POST" onsubmit="return confirm('Generate a new password and email it?');">
+    <button type="submit" class="btn">Reset &amp; Email Password</button>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>

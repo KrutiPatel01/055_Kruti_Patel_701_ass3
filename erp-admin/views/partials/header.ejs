@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= typeof title !== 'undefined' ? title : 'ERP Admin' %></title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="container wide">
+    <div class="topbar">
+      <strong>ERP Admin Panel</strong>
+      <div class="who">
+        <a href="/employees">Employees</a>
+        <span>Logged in as <strong><%= admin.username %></strong></span>
+        <form action="/logout" method="POST" class="logout-form"><button type="submit" class="btn small grey">Logout</button></form>
+      </div>
+    </div>
+    <% if (flash) { %>
+      <div class="alert alert-<%= flash.type === 'success' ? 'success' : 'error' %>"><%= flash.text %></div>
+    <% } %>

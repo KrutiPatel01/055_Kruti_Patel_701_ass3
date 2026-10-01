@@ -1,0 +1,17 @@
+{
+  "name": "express-login-file-session",
+  "version": "1.0.0",
+  "description": "Express login app with file-based session store, 2 protected routes, and logout",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "session-file-store": "^1.5.0"
+  }
+}

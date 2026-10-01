@@ -1,0 +1,44 @@
+<%- include('../partials/header', { title: 'Employees' }) %>
+
+<h1>Employees</h1>
+
+<div class="toolbar">
+  <form action="/employees" method="GET">
+    <input type="text" name="q" value="<%= q %>" placeholder="Search name / empid / department" />
+    <button type="submit" class="btn">Search</button>
+    <% if (q) { %><a href="/employees" class="btn grey">Clear</a><% } %>
+  </form>
+  <a href="/employees/new" class="btn">+ Add Employee</a>
+</div>
+
+<% if (rows.length === 0) { %>
+  <p class="muted">No employees found.</p>
+<% } else { %>
+<table class="result-table">
+  <tr>
+    <th>Emp ID</th><th>Name</th><th>Department</th><th>Designation</th>
+    <th class="num">Gross</th><th class="num">Net Salary</th><th>Actions</th>
+  </tr>
+  <% rows.forEach(function(r) { %>
+    <tr>
+      <td><%= r.emp.empid %></td>
+      <td><%= r.emp.name %><br /><span class="muted"><%= r.emp.email %></span></td>
+      <td><%= r.emp.department %></td>
+      <td><%= r.emp.designation %></td>
+      <td class="num"><%= r.salary.gross.toFixed(2) %></td>
+      <td class="num"><strong><%= r.salary.net.toFixed(2) %></strong></td>
+      <td>
+        <div class="actions">
+          <a class="btn small" href="/employees/<%= r.emp._id %>">View</a>
+          <a class="btn small grey" href="/employees/<%= r.emp._id %>/edit">Edit</a>
+          <form action="/employees/<%= r.emp._id %>/delete" method="POST" onsubmit="return confirm('Delete <%= r.emp.empid %>?');">
+            <button type="submit" class="btn small danger">Delete</button>
+          </form>
+        </div>
+      </td>
+    </tr>
+  <% }) %>
+</table>
+<% } %>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,16 @@
+{
+  "name": "user-registration-form",
+  "version": "1.0.0",
+  "description": "Fullstack Assignment 1 - User Registration Form with Express, Multer, and express-validator",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-validator": "^7.2.1",
+    "multer": "^1.4.5-lts.1"
+  }
+}

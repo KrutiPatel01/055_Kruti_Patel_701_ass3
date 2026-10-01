@@ -1,0 +1,74 @@
+<%- include('../partials/header', { title: mode === 'new' ? 'Add Employee' : 'Edit Employee' }) %>
+
+<h1><%= mode === 'new' ? 'Add Employee' : 'Edit Employee ' + emp.empid %></h1>
+
+<% if (Object.keys(errors).length > 0) { %>
+  <div class="alert alert-error">
+    <strong>Please fix the following errors:</strong>
+    <ul><% Object.values(errors).forEach(function(m) { %><li><%= m %></li><% }) %></ul>
+  </div>
+<% } %>
+
+<% if (mode === 'new') { %>
+  <p class="muted">Employee ID and password are generated automatically. The password is stored encrypted and emailed to the employee.</p>
+<% } %>
+
+<form action="<%= mode === 'new' ? '/employees' : '/employees/' + emp._id + '/edit' %>" method="POST" novalidate>
+
+  <div class="grid-2">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" value="<%= emp.name || '' %>" class="<%= errors.name ? 'input-error' : '' %>" />
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" id="email" name="email" value="<%= emp.email || '' %>" class="<%= errors.email ? 'input-error' : '' %>" />
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input type="text" id="phone" name="phone" value="<%= emp.phone || '' %>" class="<%= errors.phone ? 'input-error' : '' %>" />
+    </div>
+    <div class="form-group">
+      <label for="department">Department</label>
+      <select id="department" name="department" class="<%= errors.department ? 'input-error' : '' %>">
+        <option value="">-- choose --</option>
+        <% departments.forEach(function(d) { %>
+          <option value="<%= d %>" <%= emp.department === d ? 'selected' : '' %>><%= d %></option>
+        <% }) %>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="designation">Designation</label>
+      <input type="text" id="designation" name="designation" value="<%= emp.designation || '' %>" class="<%= errors.designation ? 'input-error' : '' %>" />
+    </div>
+    <div class="form-group">
+      <label for="basic">Basic Salary (monthly)</label>
+      <input type="number" step="0.01" id="basic" name="basic" value="<%= emp.basic %>" class="<%= errors.basic ? 'input-error' : '' %>" />
+    </div>
+  </div>
+
+  <h3>Salary structure</h3>
+  <div class="grid-3">
+    <div class="form-group">
+      <label for="hraPercent">HRA % of basic</label>
+      <input type="number" step="0.01" id="hraPercent" name="hraPercent" value="<%= emp.hraPercent %>" class="<%= errors.hraPercent ? 'input-error' : '' %>" />
+    </div>
+    <div class="form-group">
+      <label for="daPercent">DA % of basic</label>
+      <input type="number" step="0.01" id="daPercent" name="daPercent" value="<%= emp.daPercent %>" class="<%= errors.daPercent ? 'input-error' : '' %>" />
+    </div>
+    <div class="form-group">
+      <label for="pfPercent">PF % of basic (deduction)</label>
+      <input type="number" step="0.01" id="pfPercent" name="pfPercent" value="<%= emp.pfPercent %>" class="<%= errors.pfPercent ? 'input-error' : '' %>" />
+    </div>
+    <div class="form-group">
+      <label for="professionalTax">Professional Tax (fixed)</label>
+      <input type="number" step="0.01" id="professionalTax" name="professionalTax" value="<%= emp.professionalTax %>" class="<%= errors.professionalTax ? 'input-error' : '' %>" />
+    </div>
+  </div>
+
+  <button type="submit"><%= mode === 'new' ? 'Save & Email Login Details' : 'Update Employee' %></button>
+  <a href="/employees" class="btn grey">Cancel</a>
+</form>
+
+<%- include('../partials/footer') %>

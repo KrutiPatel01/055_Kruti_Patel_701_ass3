@@ -1,0 +1,13 @@
+{
+  "name": "free-api-utility",
+  "version": "1.0.0",
+  "description": "Weather utility using the free Open-Meteo API, called from both the browser and the Express backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "engines": { "node": ">=18" }
+}

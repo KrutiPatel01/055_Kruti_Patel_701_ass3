@@ -1,0 +1,9 @@
+node_modules/
+.env
+dist/
+build/
+*.log
+reg-form/uploads/*
+reg-form/downloads/*
+login-app/sessions/*
+Thumbs.db

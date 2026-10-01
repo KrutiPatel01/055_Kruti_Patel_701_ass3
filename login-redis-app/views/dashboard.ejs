@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <a href="/dashboard" class="active">Dashboard</a>
+      <a href="/profile">Profile</a>
+      <form action="/logout" method="POST" class="logout-form">
+        <button type="submit" class="link-button">Logout</button>
+      </form>
+    </nav>
+
+    <h1>Dashboard</h1>
+    <p>Welcome back, <strong><%= user.username %></strong>. This is a protected route — you can only see it while logged in.</p>
+
+    <div class="info-box">
+      <p><strong>Session ID:</strong> <%= sessionId %></p>
+      <p>This session is stored in Redis (key <code>sess:&lt;sessionId&gt;</code>), not in server memory — so it works even across multiple app instances.</p>
+    </div>
+  </div>
+</body>
+</html>

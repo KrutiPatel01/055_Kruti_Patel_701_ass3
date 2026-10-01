@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Profile</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/profile" class="active">Profile</a>
+      <form action="/logout" method="POST" class="logout-form">
+        <button type="submit" class="link-button">Logout</button>
+      </form>
+    </nav>
+
+    <h1>Profile</h1>
+    <p>This is the second protected route — also gated by the same auth middleware.</p>
+
+    <table class="result-table">
+      <tr><th>Username</th><td><%= user.username %></td></tr>
+      <tr><th>User ID</th><td><%= user.id %></td></tr>
+      <tr><th>Session ID</th><td><%= sessionId %></td></tr>
+      <tr><th>Session expires</th><td><%= loginTime %></td></tr>
+    </table>
+  </div>
+</body>
+</html>
